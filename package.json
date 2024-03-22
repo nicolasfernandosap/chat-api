@@ -1,17 +1,30 @@
 {
   "name": "chat-api",
   "version": "1.0.0",
-  "description": "��#\u0000 \u0000c\u0000h\u0000a\u0000t\u0000-\u0000a\u0000p\u0000i\u0000\r\u0000 \u0000",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node ./bin/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicolasfernandosap/chat-api.git"
+  },
+  "keywords": [
+    "chat",
+    "api"
+  ],
+  "author": "Lara Schüler",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nicolasfernandosap/chat-api/issues"
+  },
+  "homepage": "https://github.com/nicolasfernandosap/chat-api#readme",
   "dependencies": {
-    "dotenv": "^16.4.5",
-    "express": "^4.18.3",
-    "mongodb": "^6.5.0"
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongodb": "^5.3.0"
   }
 }
