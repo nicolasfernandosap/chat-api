@@ -1,4 +1,4 @@
-const express = require('express');
+ const express = require('express');
 const app = express();
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
@@ -16,21 +16,31 @@ app.use("/sobre", router.get("/sobre", (req,res, next)=>{
       "versão": "0.1.0",
       "autor": "Cãndido Farias"
 })
-}));
+}));   
+
+
+//Parte 4 Aulas.Verificar erro
 
 app.use("/salas", router.get("salas",(req,res, next)=>{
-   const salaController = require("./controllers/salaController");
-}));
+   if(await
+token.checkToken(req.headers.token,req.headers.iduser,req.headers.nick)
+){
+      let resp= await salaController.get();
+      res.status(200).send(resp);
+   }else{
+       res.status(400).send({msg:"Usuario não autorizado"});
+   }
+}))
 
-module.exports = app;
+ module.exports = app;
 
 app.use('/' , router.get);
 
-//Parte 4 Aulas 
+
 
 app.use("/entrar", router.post("/entrar", async(req, res, next)=> {
    const usuarioController = require("./controllers/usuarioController")
    let resp = await usuarioController.entrar(req.body.nick);
    res.status(200).send(resp);
 
-})); 
+})); */

@@ -23,3 +23,8 @@ function listarSalas(){
 }
   ];
 }
+
+let listarSalas = async () =>{
+      let salas = await Db.findALL("salas");
+      return salas;
+}

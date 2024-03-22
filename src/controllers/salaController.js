@@ -1,4 +1,4 @@
-exports.get = async () =>{
-    return {status: "OK", controller: "sala"};
+exports.get = async (req, res) =>{
+    return await salaModel.listarSalas();
 }
 
