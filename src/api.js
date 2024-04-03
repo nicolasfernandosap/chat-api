@@ -19,7 +19,7 @@ app.use('/salas', router.get('/salas', async (req, res, next) => {
 
 }));
 
-// Rota para entrar na sala
+// Rota para entrar na sala .........
 app.use('/sala/entrar', router.put('/sala/entrar', async (req, res) => {
     if (!token.checktoken(req.headers.token, req.headers.iduser, req.headers.nick))
         return false;

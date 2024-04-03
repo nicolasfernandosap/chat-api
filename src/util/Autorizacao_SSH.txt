@@ -1,0 +1,11 @@
+
+//COMANDO PARA ABRIR AUTORIZAÇÃO DE (CHAVE KEY) LINKADA NO GIT HUB:
+ SENHA de autorização: SHA256:2yiemrOAHR70wIhGMouNr98n6Fs3461a1k0uNKg8NOU
+-------------------------------------------------
+
+ssh-keygen -t rsa
+// Depois ela irá pedir a senha para autorização
+git status
+
+---------------
+Senha SSh Para dar comando push em repositorio remoto: kiko159753472
