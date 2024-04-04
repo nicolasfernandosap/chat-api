@@ -1,7 +1,7 @@
 
 var express = require("express");
 var app = express();
-const token = require ('.util/token');
+const token = require ('./util/token');
 
 app.use(express.urlencoded({extend : true}));
 app.use(express.json());

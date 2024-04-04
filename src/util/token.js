@@ -25,6 +25,5 @@ const setToken = async (id, key) => {
 
 module.exports = {
     checktoken,
-    setToken,
-
+    setToken
 };
