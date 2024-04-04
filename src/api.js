@@ -1,4 +1,15 @@
 
+var express = require("express");
+var app = express();
+const token = require ('.util/token');
+
+app.use(express.urlencoded({extend : true}));
+app.use(express.json());
+
+const router = express.Router();
+const salaController = require("./require/salaController");
+
+
 // Rota para entrar no CHAT
 app.use('/entrar', router.post('/entrar', async (req, res, next) => {
     const usuarioController = require('./controllers/usuarioController');
