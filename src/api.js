@@ -9,6 +9,11 @@ app.use(express.json());
 const router = express.Router();
 const salaController = require("./controllers/salaController");
 
+//Começo de Rotas 
+app.use('/', router.get('/', (req,res)=>{
+    res.status(200).send(" <h1>api - chat <h1>")
+  }))
+  
 
 // Rota para entrar no CHAT
 app.use('/entrar', router.post('/entrar', async (req, res, next) => {
@@ -29,6 +34,16 @@ app.use('/salas', router.get('/salas', async (req, res, next) => {
     }
 
 }));
+
+
+//Sobre a API 
+app.use('/', router.get('/sobre' , (req, res, next)=>{
+   res.status(200).send({
+       "nome":"API - CHAT",
+       "versão": "0.1.0" ,
+       "autor": "Nicolas Fernando"
+   })
+}))
 
 // Rota para entrar na sala .........
 app.use('/sala/entrar', router.put('/sala/entrar', async (req, res) => {

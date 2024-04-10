@@ -1,10 +1,18 @@
 //Função para retornar todos os registros de uma coleção dada
 
+const { connect } = require("../api");
+
 let findAll = async (collection) => {
     const db = await connect();
     let resp = await db.collection(collection).find().toArray();
     return resp;
 }
+
+async function insertOne (collection, objeto){
+    const db = await connect();
+    return db.collection(collection).
+    insertOne(objeto)
+} 
 
 let findOne = async (collection, _id) => {
     const db = await connect();
