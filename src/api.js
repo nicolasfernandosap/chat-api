@@ -3,11 +3,11 @@ var express = require("express");
 var app = express();
 const token = require ('./util/token');
 
-app.use(express.urlencoded({extend : true}));
+app.use(express.urlencoded({extended : true}));
 app.use(express.json());
 
 const router = express.Router();
-const salaController = require("./require/salaController");
+const salaController = require("./controllers/salaController");
 
 
 // Rota para entrar no CHAT
@@ -56,3 +56,5 @@ app.use('/sala/mensagens/', router.get('/sala/mensagens', async (req, res) => {
     let resp = await salaController.buscarMensagens(req.query.idsala, req.query.timestamp);
     res.status(200).send(resp);
 }))
+
+module.exports=app;
