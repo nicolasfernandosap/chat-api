@@ -1,6 +1,6 @@
 //Função para retornar todos os registros de uma coleção dada
 
-const {MongoClient, objet} = require("mongodb");
+const {MongoClient, objet, ObjectId} = require("mongodb");
 
 let singleton;
 

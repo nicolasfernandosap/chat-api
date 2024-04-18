@@ -24,8 +24,12 @@ app.use('/entrar', router.post('/entrar', async (req, res, next) => {
 
 //Rota para listar as salas
 app.use('/salas', router.get('/salas', async (req, res, next) => {
-    if (await
-        token.checktoken(req.headers.token, req.headers.iduser, req.headers.nick)
+    
+    console.log("Token:"+req.query.token)
+    console.log("idUser:"+req.query.idUser)
+    console.log("Nick:"+req.query.nick)
+    
+    if (await token.checkToken(req.query.token, req.query.idUser, req.query.nick)
     ) {
         let resp = await salaController.get();
         res.status(200).send(resp);
@@ -47,18 +51,21 @@ app.use('/', router.get('/sobre' , (req, res, next)=>{
 
 // Rota para entrar na sala .........
 app.use('/sala/entrar', router.put('/sala/entrar', async (req, res) => {
-    if (!token.checktoken(req.headers.token, req.headers.iduser, req.headers.nick))
+    if (!token.checkToken(req.headers.token, req.headers.iduser, req.headers.nick))
         return false;
 
     console.log(req.headers);
-    let resp = await salaController.entrar(req.headers.iduser, req.query.idsala);
+    console.log("Entrando na sala idUser:"+req.headers.iduser);
+    console.log("Entrando na sala idSala:"+req.query.idSala);
+    let resp = await salaController.entrar(req.headers.iduser, req.query.idSala);
+    
     res.status(200).send(resp);
 
 }))
 
 // Criar sala
 app.use('/sala/criar', router.post('/sala/criar', async (req, res) => {
-    if (!token.checktoken(req.headers.token, req.headers.iduser, req.headers.nick))
+    if (!token.checktoken(req.headers.token, req.headers.idUser, req.headers.nick))
         return false;
 
     // Extrair os dados necessários do corpo da requisição
@@ -81,8 +88,18 @@ app.use('/sala/mensagem/', router.post('/sala/mensagem', async (req, res) => {
 
 // Listar mensagens
 app.use('/sala/mensagens/', router.get('/sala/mensagens', async (req, res) => {
-    if (!token.checktoken(req.headers.token, req.headers.iduser, req.headers.nick))
+    
+    
+    console.log("Token:"+req.headers.token)
+    console.log("idUser:"+req.headers.iduser)
+    console.log("Nick:"+req.headers.nick)
+
+    if (!token.checkToken(req.headers.token, req.headers.iduser, req.headers.nick))
         return false;
+
+        console.log("Listar Mensagem idSala:"+req.query.idsala);
+        console.log("Listar Mensagem timestamp :"+req.query.timestamp);
+
     let resp = await salaController.buscarMensagens(req.query.idsala, req.query.timestamp);
     res.status(200).send(resp);
 }))

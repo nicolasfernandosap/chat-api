@@ -8,9 +8,10 @@ exports.get = async(req, res)=>{
 
 exports.entrar = async (iduser, idsala)=>{
     const sala = await salaModel.buscarSala(idsala);
+    console.log("Sala:"+sala);
     let usuarioModel = require('../models/usuarioModel');
     let user = await usuarioModel.buscarUsuario(iduser);
-    console.log(user);
+    console.log("User:"+user);
     user.sala = {_id:sala._id, nome:sala.nome, tipo:sala.tipo};
     if(await usuarioModel.alterarUsuario(user)) {
         return {msg:'Ok', timestamp:timestamp=Date.now()};
