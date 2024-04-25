@@ -20,6 +20,7 @@ exports.entrar = async (iduser, idsala)=>{
 }
 
 exports.enviarMensagem = async (nick, msg, idsala)=>{
+    console.log("EnviarMensagem:"+idsala)
     const sala = await salaModel.buscarSala(idsala);
     console.log(sala)
 
@@ -41,8 +42,16 @@ exports.enviarMensagem = async (nick, msg, idsala)=>{
 
 exports.buscarMensagens = async (idsala, timestamp)=>{
     let mensagens = await salaModel.buscarMensagens(idsala, timestamp);
-    return {
-        'timestamp': mensagens[mensagens.length -1].timestamp,
-        'msgs': mensagens
-    };
+    try{
+        return {
+            'timestamp': mensagens[mensagens.length -1].timestamp,
+            'msgs': mensagens
+        };
+    }
+    catch(e){
+        return{
+        'timestamp': [],
+        'msgs': mensagens}
+    }
+   
 }

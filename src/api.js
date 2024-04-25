@@ -25,11 +25,11 @@ app.use('/entrar', router.post('/entrar', async (req, res, next) => {
 //Rota para listar as salas
 app.use('/salas', router.get('/salas', async (req, res, next) => {
     
-    console.log("Token:"+req.query.token)
-    console.log("idUser:"+req.query.idUser)
-    console.log("Nick:"+req.query.nick)
+    console.log("Token:"+req.headers.token)
+    console.log("idUser:"+req.headers.iduser)
+    console.log("Nick:"+req.headers.nick)
     
-    if (await token.checkToken(req.query.token, req.query.idUser, req.query.nick)
+    if (await token.checkToken(req.headers.token, req.headers.iduser, req.headers.nick)
     ) {
         let resp = await salaController.get();
         res.status(200).send(resp);
@@ -80,7 +80,7 @@ app.use('/sala/criar', router.post('/sala/criar', async (req, res) => {
 
 // Enviar mensagens
 app.use('/sala/mensagem/', router.post('/sala/mensagem', async (req, res) => {
-    if (!token.checktoken(req.headers.token, req.headers.iduser, req.headers.nick))
+    if (!token.checkToken(req.headers.token, req.headers.iduser, req.headers.nick))
         return false;
     let resp = await salaController.enviarMensagem(req.headers.nick, req.body.msg, req.body.idsala);
     res.status(200).send(resp);
