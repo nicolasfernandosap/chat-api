@@ -107,10 +107,10 @@ app.use('/sala/mensagens/', router.get('/sala/mensagens', async (req, res) => {
 //Sair da sala
 
 app.use('/sala/sair', router.put('/sala/sair', async (req, res) => {
-    if (!token.checktoken(req.headers.token, req.headers.iduser, req.headers.nick))
+    if (!token.checkToken(req.headers.token, req.headers.iduser, req.headers.nick))
         return false;
     console.log(req.headers);
-    let resp = await salaController.sairSala(req.headers.iduser, req.query.idsala);
+    let resp = await salaController.sairSala(req.query.idsala, req.headers.iduser);
     res.status(200).send(resp);
 }));
 

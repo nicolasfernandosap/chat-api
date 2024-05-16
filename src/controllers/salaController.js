@@ -1,5 +1,6 @@
 //ajustar o método get no salaController.js
 const salaModel = require('../models/salaModel');
+const usuarioModel = require('../models/usuarioModel');
 
 exports.get = async(req, res)=>{
     let salas = await salaModel.listarSalas();
@@ -55,3 +56,21 @@ exports.buscarMensagens = async (idsala, timestamp)=>{
     }
    
 }
+
+exports.sairSala = async (idsala, iduser) => {
+    console.log("idsala1:"+idsala)
+    console.log("iduser1:"+iduser)
+    const user = await usuarioModel.buscarUsuario(iduser);
+   console.log(user);
+    if (user) {
+        await exports.enviarMensagem(iduser, "Saiu da sala!", idsala);
+        delete user.sala;
+  
+        if (await usuarioModel.alterarUsuario(user)) {
+            const timestamp = Date.now();
+            return { msg: "OK", timestamp };
+        }
+    }
+  
+    return {"msg":"Erro"};
+};
